@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
             #user.email = auth.info.email
             user.password = Devise.friendly_token[0,20]
             #user.save!
-            fitbit_data
+            #fitbit_data
         end
     end
     
