@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag "login"%>
+<%= link_to "user", new_user_path, :class => "Log out" %>
 
 <!DOCTYPE html>
 <html>

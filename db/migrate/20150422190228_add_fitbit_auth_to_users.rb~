@@ -1,0 +1,4 @@
+class AddFitbitAuthToUsers < ActiveRecord::Migration
+  def change
+  end
+end

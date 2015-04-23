@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
 		  user.token = auth['credentials']['token']
 		  user.secret = auth['credentials']['secret']
         user.save!
-			user
     end
     
     # def linked?
