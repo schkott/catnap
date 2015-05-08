@@ -4,12 +4,18 @@
 <h1>Catnap</h1>
 <script>
 $(function () { 
+	Highcharts.setOptions({
+	global: {
+		useUTC: false
+	}
+});
     $('#chart-container').highcharts({
         title: {
             text: 'Your Sleep Vs. Activity'
         },
         xAxis: {
-            type: 'datetime'
+            type: 'datetime',
+            // startOnTick: true
         },
         yAxis: [{ //Primary yAxis
             title: {
@@ -29,36 +35,38 @@ $(function () {
             title: {
                 text: 'Sleep',
                 style: {
-	            	color: 'lightgreen',
+	            	color: 'lightblue',
 	            },
             },
             labels: {
                 format: '{value} hrs.',
                 style: {
-	            	color: 'lightgreen',
+	            	color: 'lightblue',
 	            },
             },
             opposite: true
         }],
         series: [{
         	pointInterval: <%= 1.day * 1000 %>,
-        	pointStart: <%= 1.week.ago.to_i * 1000 %>,
+        	pointStart: <%= ((7.days.ago)-(Time.now.seconds_since_midnight-1)).to_i * 1000 %>,
             name: 'Sleep',
             type: 'spline',
-            color: 'lightgreen',
+            color: 'lightblue',
             yAxis: 1,
             data: [8, 7.1, 4, 6, 6.1, 11, 7.9],
+            // data: <%= @weekly_sleep %>,
             tooltip: {
             	valueSuffix: ' hrs.'
             }
         }, {
         	pointInterval: <%= 1.day * 1000 %>,
-        	pointStart: <%= 1.week.ago.to_i * 1000 %>,
+        	pointStart: <%= ((7.days.ago)-(Time.now.seconds_since_midnight-1)).to_i * 1000 %>,
             name: 'Calories Burned',
             type: 'spline',
             color: 'orange',
             yAxis: 0,
             data: [450, 200, 100, 254, 289, 123, 348],
+            // data: <%= @weekly_cals %>,
             tooltip: {
             	valueSuffix: ' kCal'
             }

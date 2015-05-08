@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  require 'securerandom'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable,
@@ -10,22 +11,16 @@ class User < ActiveRecord::Base
         user = where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
             user.provider = auth.provider
             user.uid = auth.uid
-            
             user.password = Devise.friendly_token[0,20]
         end
-		  user.email = 'dummy@dummy.com'
-		  user.token = auth['credentials']['token']
-		  user.secret = auth['credentials']['secret']
+		 		user.email = SecureRandom.hex + '@dummy.com'
+		  	user.token = auth['credentials']['token']
+		  	user.secret = auth['credentials']['secret']
         user.save!
-			user
+				user
     end
-    
-    # def linked?
-    	# oauth_token.present? && oauth_secret.present?
-    # end
 
   	def fitbit_data
-	    # raise "Account is not linked with a Fitbit account" unless linked?
 	    @client ||= Fitgem::Client.new(
 	                :consumer_key => "b2b615fe0ed44e74bfcd91f08d4dc1af",
 	                :consumer_secret => "bce1d0a46dd74fda9a41071615ace73f",
