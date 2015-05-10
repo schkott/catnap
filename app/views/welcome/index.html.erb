@@ -53,8 +53,8 @@ $(function () {
             type: 'spline',
             color: 'lightblue',
             yAxis: 1,
-            data: [8, 7.1, 4, 6, 6.1, 11, 7.9],
-            // data: <%= @weekly_sleep %>,
+            // data: [8, 7.1, 4, 6, 6.1, 11, 7.9],
+            data: <%= @weekly_sleep %>,
             tooltip: {
             	valueSuffix: ' hrs.'
             }
@@ -65,8 +65,8 @@ $(function () {
             type: 'spline',
             color: 'orange',
             yAxis: 0,
-            data: [450, 200, 100, 254, 289, 123, 348],
-            // data: <%= @weekly_cals %>,
+            // data: [450, 200, 100, 254, 289, 123, 348],
+            data: <%= @weekly_cals %>,
             tooltip: {
             	valueSuffix: ' kCal'
             }
